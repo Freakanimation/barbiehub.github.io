@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>BarbieHub</title>
+
+<link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+<div class="topbar">
+<img src="img/brand/logo.svg" class="logo">
+</div>
+
+<div class="hero" style="background-image:url('img/background.jpg')">
+
+<div class="hero-content">
+
+<div class="hero-title">
+Barbie como Rapunzel
+</div>
+
+<button class="hero-button"
+onclick="window.location='movie.html?id=rapunzel'">
+Ver ahora
+</button>
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="row-title">Películas</div>
+
+<div class="row-grid" id="grid"></div>
+
+</div>
+
+<script>
+
+fetch("data/movies.json")
+
+.then(r=>r.json())
+
+.then(movies=>{
+
+const grid=document.getElementById("grid")
+
+movies.forEach(movie=>{
+
+const card=document.createElement("div")
+
+card.className="card"
+
+card.innerHTML=
+
+`<img src="${movie.poster}">`
+
+card.onclick=()=>{
+
+window.location=`movie.html?id=${movie.id}`
+
+}
+
+grid.appendChild(card)
+
+})
+
+})
+
+</script>
+
+</body>
+
+</html>

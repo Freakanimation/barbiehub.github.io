@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>BarbieHub</title>
+
+<link rel="stylesheet" href="styles.css">
+
+<style>
+
+.player{
+width:100%;
+height:calc(100vh - 80px);
+border:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="topbar">
+<img src="img/brand/logo.svg" class="logo">
+</div>
+
+<iframe id="player" class="player"></iframe>
+
+<script>
+
+const params=new URLSearchParams(window.location.search)
+
+const id=params.get("id")
+
+fetch("data/movies.json")
+
+.then(r=>r.json())
+
+.then(movies=>{
+
+const movie=movies.find(m=>m.id===id)
+
+document.getElementById("player").src=movie.players[0].url
+
+})
+
+</script>
+
+</body>
+
+</html>
